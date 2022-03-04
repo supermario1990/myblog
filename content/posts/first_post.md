@@ -2,19 +2,18 @@
 title: "First_post"
 subtitle: ""
 date: 2022-03-02T14:55:23+08:00
-draft: false
 author: ""
 authorLink: ""
 description: ""
 keywords: ""
 license: ""
-comment: false
+comment: true
 weight: 0
 
 tags:
-- draft
+- 123
 categories:
-- draft
+- 123
 
 hiddenFromHomePage: false
 hiddenFromSearch: false
@@ -27,7 +26,7 @@ resources:
   src: featured-image-preview.jpg
 
 toc:
-  enable: true
+  enable: false
 math:
   enable: false
 lightgallery: false
@@ -38,4 +37,4 @@ seo:
 ---
 
 <!--more-->
-dddddddddd
+ddddddddddsfsdfsdfdsfsdddd

@@ -85,7 +85,7 @@ theme = "FixIt"
   #  date format
   dateFormat = "2006-01-02"
   # website images for Open Graph and Twitter Cards
-  images = ["/logo.png"]
+  images = []
   # enable PWA sicne v0.2.12
   enablePWA = true
 
@@ -137,7 +137,7 @@ theme = "FixIt"
     #  Header title config
     [params.header.title]
       # URL of the LOGO
-      logo = "/logo.png"
+      logo = ""
       # title name
       name = "supermario1990"
       # you can add extra information before the name (HTML format is supported), such as icons
@@ -207,7 +207,7 @@ theme = "FixIt"
       # Gravatar Email for preferred avatar in home page
       gravatarEmail = ""
       # URL of avatar shown in home page
-      avatarURL = "/images/avatar.jpg"
+      avatarURL = ""
       #  title shown in home page (HTML format is supported)
       title = ""
       # subtitle shown in home page
@@ -226,7 +226,7 @@ theme = "FixIt"
 
   # Social config about the author
   [params.social]
-    GitHub = "Lruihao"
+    GitHub = "supermario1990"
     Linkedin = ""
     Twitter = ""
     Instagram = ""
@@ -246,7 +246,7 @@ theme = "FixIt"
     FreeCodeCamp = ""
     Bitbucket = ""
     Stackoverflow = ""
-    Weibo = "liahao"
+    Weibo = ""
     Odnoklassniki = ""
     VK = ""
     Flickr = ""
@@ -288,7 +288,7 @@ theme = "FixIt"
     XMPP = ""
     Matrix = ""
     Bilibili = ""
-    Email = "1024@lruihao.cn"
+    Email = ""
     RSS = true # 
 
   #  Page config
@@ -406,13 +406,13 @@ theme = "FixIt"
       # Valine comment config
       [params.page.comment.valine]
         enable = true
-        appId = "NE11CDxVbnX1doGq2PAlyqsb-gzGzoHsz"
-        appKey = "RjIFbnNPtctdwuy1kEMx7kAR"
+        appId = "7HwTRT0Q0Tfrat6ugrT6P67c-gzGzoHsz"
+        appKey = "mhTY1kuUmviCtQwkwOASfsfD"
         placeholder = ""
         avatar = "wavatar"
         meta= ['nick','mail','link']
         pageSize = 10
-        lang = "zh-TW"
+        lang = "zh-CN"
         visitor = true
         recordIP = true
         highlight = true
@@ -471,8 +471,8 @@ theme = "FixIt"
       images = []
       # Publisher info
       [params.page.seo.publisher]
-        name = "Lruihao"
-        logoUrl = "/images/avatar.jpg"
+        name = ""
+        logoUrl = ""
 
   #  TypeIt config
   [params.typeit]
@@ -495,7 +495,7 @@ theme = "FixIt"
   [params.watermark]
     enable = true
     # watermark's text (HTML format is supported)
-    content = '<img style="height: 0.85rem;" src="/logo.png" alt="logo" />'
+    content = ''
     # watermark's transparency
     opacity = 0.02
     # parent of watermark's container
@@ -536,7 +536,7 @@ theme = "FixIt"
     # image URL
     image = "/site-meta.jpg"
     # thumbnail URL
-    thumbnailUrl = "/logo.png"
+    thumbnailUrl = ""
 
   #  Analytics config
   [params.analytics]
