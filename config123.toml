@@ -1,7 +1,7 @@
-title = "supermario1990"
-baseURL = "https://super_mario.gitee.io"
-defaultContentLanguage = "zh-cn" # theme lang
-languageCode = "zh-CN"
+title = "菠菜眾長"
+baseURL = "https://lruihao.cn"
+defaultContentLanguage = "zh-tw" # theme lang
+languageCode = "zh-TW"
 hasCJKLanguage = true #字数统计计入中文
 enableRobotsTXT = true
 enableEmoji = true
@@ -29,7 +29,7 @@ theme = "FixIt"
     identifier = "tags"
     pre = ""
     post = ""
-    name = "标签"
+    name = "標籤"
     url = "/tags/"
     title = ""
     weight = 2
@@ -37,7 +37,7 @@ theme = "FixIt"
     identifier = "categories"
     pre = ""
     post = ""
-    name = "分类"
+    name = "分類"
     url = "/categories/"
     title = ""
     weight = 3
@@ -45,10 +45,18 @@ theme = "FixIt"
     identifier = "friends"
     pre = ""
     post = ""
-    name = "友链"
+    name = "友鏈"
     url = "/friends/"
     title = "友情链接"
     weight = 4
+  [[menu.main]]
+    identifier = "img"
+    pre = ""
+    post = ""
+    name = "相冊"
+    url = "https://img.lruihao.cn"
+    title = "COS Album"
+    weight = 5
   [[menu.main]]
     identifier = "guestbook"
     pre = ""
@@ -56,15 +64,15 @@ theme = "FixIt"
     name = "留言"
     url = "/guestbook/"
     title = ""
-    weight = 5
+    weight = 6
   [[menu.main]]
     identifier = "about"
     pre = ""
     post = ""
-    name = "关于"
+    name = "關於"
     url = "/about/"
     title = ""
-    weight = 6
+    weight = 7
 
 ######################################### Theme FixIt Config #########################################
 
@@ -72,27 +80,27 @@ theme = "FixIt"
   #  FixIt theme version
   version = "0.2.X"
   # site description
-  description = "super mario"
+  description = "Lruihao's Note 李瑞豪的博客：探索、分享、记录自己在工作生活学习到一些东西。人知道得越多，就就会发现无知的越多。有更广袤世界可以探索，真是莫大的快乐啊！"
   # site keywords
-  keywords = ["super_mario","suermario1990","nlogn","Hugo Blog"]
+  keywords = ["李瑞豪","李瑞豪的博客","菠菜眾長","博採眾長","Lruihao","Cell","Hugo Blog"]
   # site default theme ("light", "dark", "auto")
   defaultTheme = "auto"
   # public git repo url only then enableGitInfo is true
-  gitRepo = ""
+  gitRepo = "https://github.com/Lruihao/hugo-blog"
   #  which hash function used for SRI, when empty, no SRI is used
   # ("sha256", "sha384", "sha512", "md5")
   fingerprint = ""
   #  date format
   dateFormat = "2006-01-02"
   # website images for Open Graph and Twitter Cards
-  images = []
+  images = ["/logo.png"]
   # enable PWA sicne v0.2.12
   enablePWA = true
 
   #  App icon config
   [params.app]
     # optional site title override for the app when added to an iOS home screen or Android launcher
-    title = "supermario1990"
+    title = "菠菜眾長"
     # whether to omit favicon resource links
     noFavicon = false
     # modern SVG favicon to use in place of older style .png and .ico files
@@ -137,9 +145,9 @@ theme = "FixIt"
     #  Header title config
     [params.header.title]
       # URL of the LOGO
-      logo = ""
+      logo = "/logo.png"
       # title name
-      name = "Super Mario's Blog"
+      name = "菠菜众长"
       # you can add extra information before the name (HTML format is supported), such as icons
       pre = ""
       # you can add extra information after the name (HTML format is supported), such as icons
@@ -149,7 +157,7 @@ theme = "FixIt"
     # Header subtitle config since v0.2.12
     [params.header.subtitle]
       # subtitle name
-      name = "一些生活记录"
+      name = "李瑞豪的博客"
       # whether to use typeit animation for subtitle name
       typeit = false
 
@@ -167,11 +175,11 @@ theme = "FixIt"
     # Site creation time
     since = 2018
     # Public network security only in China (HTML format is supported) since v0.2.12
-    #gov = '<a rel="external nofollow noopener noreferrer" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=43030402000254" target="_blank">湘公网安备 43030402000254 号</a>'
+    gov = '<a rel="external nofollow noopener noreferrer" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=43030402000254" target="_blank">湘公网安备 43030402000254 号</a>'
     # ICP info only in China (HTML format is supported)
-    #icp = '<a rel="external nofollow noopener noreffer" href="https://beian.miit.gov.cn" target="_blank">湘 ICP 备18020535 号</a>'
+    icp = '<a rel="external nofollow noopener noreffer" href="https://beian.miit.gov.cn" target="_blank">湘 ICP 备18020535 号</a>'
     # license info (HTML format is supported)
-    #license = '<a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
+    license = '<a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
 
   #  Section (all posts) page config
   [params.section]
@@ -207,11 +215,11 @@ theme = "FixIt"
       # Gravatar Email for preferred avatar in home page
       gravatarEmail = ""
       # URL of avatar shown in home page
-      avatarURL = ""
+      avatarURL = "/images/avatar.jpg"
       #  title shown in home page (HTML format is supported)
-      title = ""
+      title = "Lruihao's Note"
       # subtitle shown in home page
-      subtitle = ""
+      subtitle = "不怕萬人阻擋，只怕自己投降"
       # whether to use typeit animation for subtitle
       typeit = true
       # whether to show social links
@@ -226,7 +234,7 @@ theme = "FixIt"
 
   # Social config about the author
   [params.social]
-    GitHub = "supermario1990"
+    GitHub = "Lruihao"
     Linkedin = ""
     Twitter = ""
     Instagram = ""
@@ -246,7 +254,7 @@ theme = "FixIt"
     FreeCodeCamp = ""
     Bitbucket = ""
     Stackoverflow = ""
-    Weibo = ""
+    Weibo = "liahao"
     Odnoklassniki = ""
     VK = ""
     Flickr = ""
@@ -288,7 +296,7 @@ theme = "FixIt"
     XMPP = ""
     Matrix = ""
     Bilibili = ""
-    Email = ""
+    Email = "1024@lruihao.cn"
     RSS = true # 
 
   #  Page config
@@ -408,11 +416,11 @@ theme = "FixIt"
         enable = true
         appId = "NE11CDxVbnX1doGq2PAlyqsb-gzGzoHsz"
         appKey = "RjIFbnNPtctdwuy1kEMx7kAR"
-        placeholder = ""
+        placeholder = "ヾﾉ≧∀≦)o~ 有事請留言！\n評論功能以郵件作為通知方式！\n如有必要請填寫正確郵箱哦！"
         avatar = "wavatar"
         meta= ['nick','mail','link']
         pageSize = 10
-        lang = "zh-CN"
+        lang = "zh-TW"
         visitor = true
         recordIP = true
         highlight = true
@@ -471,8 +479,8 @@ theme = "FixIt"
       images = []
       # Publisher info
       [params.page.seo.publisher]
-        name = ""
-        logoUrl = ""
+        name = "Lruihao"
+        logoUrl = "/images/avatar.jpg"
 
   #  TypeIt config
   [params.typeit]
@@ -495,7 +503,7 @@ theme = "FixIt"
   [params.watermark]
     enable = true
     # watermark's text (HTML format is supported)
-    content = ''
+    content = '<img style="height: 0.85rem;" src="/logo.png" alt="logo" /> 李瑞豪'
     # watermark's transparency
     opacity = 0.02
     # parent of watermark's container
@@ -536,7 +544,7 @@ theme = "FixIt"
     # image URL
     image = "/site-meta.jpg"
     # thumbnail URL
-    thumbnailUrl = ""
+    thumbnailUrl = "/logo.png"
 
   #  Analytics config
   [params.analytics]
@@ -617,9 +625,9 @@ theme = "FixIt"
 
 # Author config
 [author]
-  name = "supermario1990"
-  email = "406517780@qq.com"
-  link = "https://github.com/supermario1990"
+  name = "Lruihao"
+  email = "1024@lruihao.cn"
+  link = "https://github.com/Lruihao"
 
 # Sitemap config
 [sitemap]
@@ -658,5 +666,3 @@ theme = "FixIt"
   section = ["HTML", "RSS"]
   taxonomy = ["HTML", "RSS"]
   taxonomyTerm = ["HTML"]
-
-
