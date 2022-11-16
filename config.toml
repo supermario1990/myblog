@@ -7,7 +7,7 @@ enableRobotsTXT = true
 enableEmoji = true
 enableGitInfo = true
 relativeURLs = false
-buildDrafts = true
+buildDrafts = false
 summaryLength = 150
 theme = "FixIt"
 
@@ -207,11 +207,11 @@ theme = "FixIt"
       # Gravatar Email for preferred avatar in home page
       gravatarEmail = ""
       # URL of avatar shown in home page
-      avatarURL = ""
+      avatarURL = "/images/weight_lifting.gif"
       #  title shown in home page (HTML format is supported)
-      title = ""
+      title = "keep going"
       # subtitle shown in home page
-      subtitle = ""
+      subtitle = "好好学习，天天向上"
       # whether to use typeit animation for subtitle
       typeit = true
       # whether to show social links
