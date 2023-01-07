@@ -1,0 +1,75 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>database - 标签 - supermario1990</title>
+    <link>https://super_mario.gitee.io/tags/database/</link>
+    <description>database - 标签 - supermario1990</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>406517780@qq.com (supermario1990)</managingEditor>
+      <webMaster>406517780@qq.com (supermario1990)</webMaster><lastBuildDate>Sat, 23 Apr 2022 21:26:40 &#43;0800</lastBuildDate><atom:link href="https://super_mario.gitee.io/tags/database/" rel="self" type="application/rss+xml" /><item>
+  <title>DGraph图数据库使用</title>
+  <link>https://super_mario.gitee.io/posts/dgraph%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%BF%E7%94%A8/</link>
+  <pubDate>Sat, 23 Apr 2022 21:26:40 &#43;0800</pubDate>
+  <author>super_mario</author>
+  <guid>https://super_mario.gitee.io/posts/dgraph%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%BF%E7%94%A8/</guid>
+  <description><![CDATA[<h2 id="背景">背景</h2>
+<p>之前做了一个项目，项目中需要追溯生产环节中的生产过程。需求大概是这样, 输入任意的生产序号，查找这个生产序号的后续序号，同时反向查找此前序序号。这其实就是一个有向无环图。因为当时只对关系型数据库和一些nosql数据库比较熟，所以就直接选择了mysql来做存储。在关系型数据库中要表达&quot;图&quot;或者&quot;树&quot;其实是很别扭的，非常不方便。当时做的也比较丑陋，查询性能很差。</p>
+<p>其实在这个场景下，使用图数据库是最合适的。目前有两款开源的图数据比较好：<code>dgraph</code> 和 <code>nebula graph</code>。<code>nebula graph</code> 使用c++开发，目前只支持linux。<code>dgraph</code> 使用go开发，支持全平台。从网上的资料来看，<code>nebula graph</code> 可能在性能上更有优势，但是个人语言喜好问题，我还是选择了 <code>dgraph</code>。</p>
+<h2 id="dgraph安装">dgraph安装</h2>
+<p>1.为了更快的体验测试，直接使用docker安装 <code>dgraph</code> 服务器:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run --rm -it -p 8080:8080 -p 9080:9080 dgraph/standalone:v21.12.0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.安装 <code>dgraph ui</code> Ratel</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git clone https://github.com/dgraph-io/ratel.git
+</span></span><span class="line"><span class="cl"><span class="c1"># Build ratel</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># NOTE: ratel needs to be in your GOPATH for this to work.</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ratel
+</span></span><span class="line"><span class="cl">./scripts/build.prod.sh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Start the ratel server.</span>
+</span></span><span class="line"><span class="cl">./build/ratel  
+</span></span><span class="line"><span class="cl"><span class="c1"># Visit localhost:8000 to use ratel.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#或者使用下面的方式, 我使用的是这种</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#Using WebpackDevServer for fast re-compilation of JavaScript</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> client/
+</span></span><span class="line"><span class="cl">npm start
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>直接访问 <code>http://localhost:3000/</code></p>
+<h2 id="dgraph使用">dgraph使用</h2>
+<ol>
+<li>mutation</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"></code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item>
+</channel>
+</rss>
