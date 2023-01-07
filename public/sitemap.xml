@@ -2,8 +2,8 @@
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
   ><url>
-      <loc>https://super_mario.gitee.io/about/</loc><lastmod>2022-11-16T14:14:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-      <loc>https://super_mario.gitee.io/guestbook/</loc><lastmod>2022-11-16T14:14:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+      <loc>https://super_mario.gitee.io/about/</loc><lastmod>2022-11-16T14:14:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+      <loc>https://super_mario.gitee.io/guestbook/</loc><lastmod>2022-11-16T14:14:28&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>https://super_mario.gitee.io/categories/</loc><lastmod>2022-03-17T20:43:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>https://super_mario.gitee.io/posts/</loc><lastmod>2022-03-17T20:43:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
       <loc>https://super_mario.gitee.io/</loc><lastmod>2022-03-17T20:43:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
