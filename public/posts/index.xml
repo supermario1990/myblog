@@ -4,13 +4,291 @@
     <link>https://super_mario.gitee.io/posts/</link>
     <description>所有文章 | supermario1990</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>406517780@qq.com (supermario1990)</managingEditor>
-      <webMaster>406517780@qq.com (supermario1990)</webMaster><lastBuildDate>Sat, 05 Mar 2022 09:47:05 &#43;0000</lastBuildDate><atom:link href="https://super_mario.gitee.io/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>406517780@qq.com (supermario1990)</webMaster><lastBuildDate>Sun, 08 Jan 2023 10:44:26 &#43;0800</lastBuildDate><atom:link href="https://super_mario.gitee.io/posts/" rel="self" type="application/rss+xml" /><item>
+  <title>2185.统计包含给定前缀的字符串</title>
+  <link>https://super_mario.gitee.io/posts/2185.%E7%BB%9F%E8%AE%A1%E5%8C%85%E5%90%AB%E7%BB%99%E5%AE%9A%E5%89%8D%E7%BC%80%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/</link>
+  <pubDate>Sun, 08 Jan 2023 10:44:26 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://super_mario.gitee.io/posts/2185.%E7%BB%9F%E8%AE%A1%E5%8C%85%E5%90%AB%E7%BB%99%E5%AE%9A%E5%89%8D%E7%BC%80%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/</guid>
+  <description><![CDATA[<p>题目描述:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl">给你一个字符串数组 words 和一个字符串 pref 。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">返回 words 中以 pref 作为 前缀 的字符串的数目。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">字符串 s 的 前缀 就是  s 的任一前导连续字符串。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">示例 1：
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">输入：words = [&#34;pay&#34;,&#34;attention&#34;,&#34;practice&#34;,&#34;attend&#34;], pref = &#34;at&#34;
+</span></span><span class="line"><span class="cl">输出：2
+</span></span><span class="line"><span class="cl">解释：以 &#34;at&#34; 作为前缀的字符串有两个，分别是：&#34;attention&#34; 和 &#34;attend&#34; 。
+</span></span><span class="line"><span class="cl">示例 2：
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">输入：words = [&#34;leetcode&#34;,&#34;win&#34;,&#34;loops&#34;,&#34;success&#34;], pref = &#34;code&#34;
+</span></span><span class="line"><span class="cl">输出：0
+</span></span><span class="line"><span class="cl">解释：不存在以 &#34;code&#34; 作为前缀的字符串。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>分析：</p>
+<p>题目非常简单。可以使用语言内置库函数，记不住库函数的话只能自己实现了。</p>
+<p>解法一：使用语言内置库函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">prefixCount</span><span class="p">(</span><span class="nx">words</span> <span class="p">[]</span><span class="kt">string</span><span class="p">,</span> <span class="nx">pref</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">cnt</span> <span class="o">:=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">words</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">HasPrefix</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">pref</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">cnt</span><span class="o">++</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">cnt</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>解法二：自己实现函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">prefixCount</span><span class="p">(</span><span class="nx">words</span> <span class="p">[]</span><span class="kt">string</span><span class="p">,</span> <span class="nx">pref</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">cnt</span> <span class="o">:=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">words</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nf">hasPrefix</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">pref</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">cnt</span><span class="o">++</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">cnt</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// hasPrefix 判断str是否有前缀prefix
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">hasPrefix</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="nx">prefix</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">bool</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  	<span class="c1">// 如果前缀比字符串本身还长，肯定是false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">prefix</span><span class="p">)</span> <span class="p">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">prefix</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="nx">str</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">!=</span> <span class="nx">prefix</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>TODO：</p>
+<p>重新复习下go语言中和字符串操作相关的库<code>strings</code></p>
+<p>链接：</p>
+<ol>
+<li><a href="https://leetcode.cn/problems/counting-words-with-a-given-prefix/"target="_blank" rel="external nofollow noopener noreferrer">2185. 统计包含给定前缀的字符串</a></li>
+</ol>
+]]></description>
+</item>
+<item>
   <title>开始</title>
   <link>https://super_mario.gitee.io/posts/start/</link>
   <pubDate>Sat, 05 Mar 2022 09:47:05 &#43;0000</pubDate>
   <author>supermario1990</author>
   <guid>https://super_mario.gitee.io/posts/start/</guid>
   <description><![CDATA[<p>这是一个开始，以后便在这里记录一些见识和感悟……!</p>]]></description>
+</item>
+<item>
+  <title>2185.统计包含给定前缀的字符串</title>
+  <link>https://super_mario.gitee.io/posts/2185.%E7%BB%9F%E8%AE%A1%E5%8C%85%E5%90%AB%E7%BB%99%E5%AE%9A%E5%89%8D%E7%BC%80%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/</link>
+  <pubDate>Sun, 08 Jan 2023 10:44:26 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://super_mario.gitee.io/posts/2185.%E7%BB%9F%E8%AE%A1%E5%8C%85%E5%90%AB%E7%BB%99%E5%AE%9A%E5%89%8D%E7%BC%80%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/</guid>
+  <description><![CDATA[<p>题目描述:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl">给你一个字符串数组 words 和一个字符串 pref 。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">返回 words 中以 pref 作为 前缀 的字符串的数目。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">字符串 s 的 前缀 就是  s 的任一前导连续字符串。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">示例 1：
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">输入：words = [&#34;pay&#34;,&#34;attention&#34;,&#34;practice&#34;,&#34;attend&#34;], pref = &#34;at&#34;
+</span></span><span class="line"><span class="cl">输出：2
+</span></span><span class="line"><span class="cl">解释：以 &#34;at&#34; 作为前缀的字符串有两个，分别是：&#34;attention&#34; 和 &#34;attend&#34; 。
+</span></span><span class="line"><span class="cl">示例 2：
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">输入：words = [&#34;leetcode&#34;,&#34;win&#34;,&#34;loops&#34;,&#34;success&#34;], pref = &#34;code&#34;
+</span></span><span class="line"><span class="cl">输出：0
+</span></span><span class="line"><span class="cl">解释：不存在以 &#34;code&#34; 作为前缀的字符串。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>分析：</p>
+<p>题目非常简单。可以使用语言内置库函数，记不住库函数的话只能自己实现了。</p>
+<p>解法一：使用语言内置库函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">prefixCount</span><span class="p">(</span><span class="nx">words</span> <span class="p">[]</span><span class="kt">string</span><span class="p">,</span> <span class="nx">pref</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">cnt</span> <span class="o">:=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">words</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">HasPrefix</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">pref</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">cnt</span><span class="o">++</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">cnt</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>解法二：自己实现函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">prefixCount</span><span class="p">(</span><span class="nx">words</span> <span class="p">[]</span><span class="kt">string</span><span class="p">,</span> <span class="nx">pref</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">cnt</span> <span class="o">:=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">words</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nf">hasPrefix</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">pref</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">cnt</span><span class="o">++</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">cnt</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// hasPrefix 判断str是否有前缀prefix
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">hasPrefix</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="nx">prefix</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">bool</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  	<span class="c1">// 如果前缀比字符串本身还长，肯定是false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">prefix</span><span class="p">)</span> <span class="p">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">prefix</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="nx">str</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">!=</span> <span class="nx">prefix</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>TODO：</p>
+<p>重新复习下go语言中和字符串操作相关的库<code>strings</code></p>
+<p>链接：</p>
+<ol>
+<li><a href="https://leetcode.cn/problems/counting-words-with-a-given-prefix/"target="_blank" rel="external nofollow noopener noreferrer">2185. 统计包含给定前缀的字符串</a></li>
+</ol>
+]]></description>
 </item>
 <item>
   <title>开始</title>
