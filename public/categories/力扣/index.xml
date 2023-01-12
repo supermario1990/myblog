@@ -4,7 +4,155 @@
     <link>https://super_mario.gitee.io/categories/%E5%8A%9B%E6%89%A3/</link>
     <description>力扣 - 分类 - supermario1990</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>406517780@qq.com (supermario1990)</managingEditor>
-      <webMaster>406517780@qq.com (supermario1990)</webMaster><lastBuildDate>Mon, 09 Jan 2023 23:02:06 &#43;0800</lastBuildDate><atom:link href="https://super_mario.gitee.io/categories/%E5%8A%9B%E6%89%A3/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>406517780@qq.com (supermario1990)</webMaster><lastBuildDate>Thu, 12 Jan 2023 22:40:47 &#43;0800</lastBuildDate><atom:link href="https://super_mario.gitee.io/categories/%E5%8A%9B%E6%89%A3/" rel="self" type="application/rss+xml" /><item>
+  <title>1807.替换字符串中的括号内容</title>
+  <link>https://super_mario.gitee.io/posts/1807.%E6%9B%BF%E6%8D%A2%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E6%8B%AC%E5%8F%B7%E5%86%85%E5%AE%B9/</link>
+  <pubDate>Thu, 12 Jan 2023 22:40:47 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://super_mario.gitee.io/posts/1807.%E6%9B%BF%E6%8D%A2%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E6%8B%AC%E5%8F%B7%E5%86%85%E5%AE%B9/</guid>
+  <description><![CDATA[<h2 id="题目描述">题目描述</h2>
+<p>给你一个字符串 <code>s</code> ，它包含一些括号对，每个括号中包含一个 <strong>非空</strong> 的键。</p>
+<ul>
+<li>比方说，字符串 <code>&quot;(name)is(age)yearsold&quot;</code> 中，有 <strong>两个</strong> 括号对，分别包含键 <code>&quot;name&quot;</code> 和 <code>&quot;age&quot;</code> 。</li>
+</ul>
+<p>你知道许多键对应的值，这些关系由二维字符串数组 <code>knowledge</code> 表示，其中 <code>knowledge[i] = [keyi, valuei]</code> ，表示键 <code>keyi</code> 对应的值为 <code>valuei</code> 。</p>
+<p>你需要替换 <strong>所有</strong> 的括号对。当你替换一个括号对，且它包含的键为 <code>keyi</code> 时，你需要：</p>
+<ul>
+<li>将 <code>keyi</code> 和括号用对应的值 <code>valuei</code> 替换。</li>
+<li>如果从 <code>knowledge</code> 中无法得知某个键对应的值，你需要将 <code>keyi</code> 和括号用问号 <code>&quot;?&quot;</code> 替换（不需要引号）。</li>
+</ul>
+<p><code>knowledge</code> 中每个键最多只会出现一次。<code>s</code> 中不会有嵌套的括号。</p>
+<p>请你返回替换 <strong>所有</strong> 括号对后的结果字符串。</p>
+<p><strong>示例 1：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">输入：s = &#34;(name)is(age)yearsold&#34;, knowledge = [[&#34;name&#34;,&#34;bob&#34;],[&#34;age&#34;,&#34;two&#34;]]
+</span></span><span class="line"><span class="cl">输出：&#34;bobistwoyearsold&#34;
+</span></span><span class="line"><span class="cl">解释：
+</span></span><span class="line"><span class="cl">键 &#34;name&#34; 对应的值为 &#34;bob&#34; ，所以将 &#34;(name)&#34; 替换为 &#34;bob&#34; 。
+</span></span><span class="line"><span class="cl">键 &#34;age&#34; 对应的值为 &#34;two&#34; ，所以将 &#34;(age)&#34; 替换为 &#34;two&#34; 。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>示例 2：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">输入：s = &#34;hi(name)&#34;, knowledge = [[&#34;a&#34;,&#34;b&#34;]]
+</span></span><span class="line"><span class="cl">输出：&#34;hi?&#34;
+</span></span><span class="line"><span class="cl">解释：由于不知道键 &#34;name&#34; 对应的值，所以用 &#34;?&#34; 替换 &#34;(name)&#34; 。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>示例 3：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">输入：s = &#34;(a)(a)(a)aaa&#34;, knowledge = [[&#34;a&#34;,&#34;yes&#34;]]
+</span></span><span class="line"><span class="cl">输出：&#34;yesyesyesaaa&#34;
+</span></span><span class="line"><span class="cl">解释：相同的键在 s 中可能会出现多次。
+</span></span><span class="line"><span class="cl">键 &#34;a&#34; 对应的值为 &#34;yes&#34; ，所以将所有的 &#34;(a)&#34; 替换为 &#34;yes&#34; 。
+</span></span><span class="line"><span class="cl">注意，不在括号里的 &#34;a&#34; 不需要被替换。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 105</code></li>
+<li><code>0 &lt;= knowledge.length &lt;= 105</code></li>
+<li><code>knowledge[i].length == 2</code></li>
+<li><code>1 &lt;= keyi.length, valuei.length &lt;= 10</code></li>
+<li><code>s</code> 只包含小写英文字母和圆括号 <code>'('</code> 和 <code>')'</code> 。</li>
+<li><code>s</code> 中每一个左圆括号 <code>'('</code> 都有对应的右圆括号 <code>')'</code> 。</li>
+<li><code>s</code> 中每对括号内的键都不会为空。</li>
+<li><code>s</code> 中不会有嵌套括号对。</li>
+<li><code>keyi</code> 和 <code>valuei</code> 只包含小写英文字母。</li>
+<li><code>knowledge</code> 中的 <code>keyi</code> 不会重复。</li>
+</ul>
+<h2 id="分析">分析</h2>
+<p>这道题比较直接，不用绕什么弯子。先用hash表将 <code>knowledge</code> 内容存起来，然后直接遍历整个字符串进行替换。</p>
+<h2 id="解法">解法</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">evaluate</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">knowledge</span> <span class="p">[][]</span><span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">m</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">knowledge</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">m</span><span class="p">[</span><span class="nx">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="p">=</span> <span class="nx">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">rs</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">l</span> <span class="o">:=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">r</span> <span class="o">:=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;(&#39;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">l</span> <span class="p">=</span> <span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">r</span> <span class="p">=</span> <span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">			<span class="k">for</span> <span class="nx">s</span><span class="p">[</span><span class="nx">r</span><span class="p">]</span> <span class="o">!=</span> <span class="sc">&#39;)&#39;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">r</span><span class="o">++</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">i</span> <span class="p">=</span> <span class="nx">r</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">exist</span> <span class="o">:=</span> <span class="nx">m</span><span class="p">[</span><span class="nx">s</span><span class="p">[</span><span class="nx">l</span><span class="p">:</span><span class="nx">r</span><span class="p">]];</span> <span class="p">!</span><span class="nx">exist</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">rs</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">rs</span><span class="p">,</span> <span class="sc">&#39;?&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">rs</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">rs</span><span class="p">,</span> <span class="nx">v</span><span class="o">...</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">rs</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">rs</span><span class="p">,</span> <span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nb">string</span><span class="p">(</span><span class="nx">rs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item>
+<item>
   <title>1806.还原排列的最少操作步数</title>
   <link>https://super_mario.gitee.io/posts/1806.%E8%BF%98%E5%8E%9F%E6%8E%92%E5%88%97%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%AD%A5%E6%95%B0/</link>
   <pubDate>Mon, 09 Jan 2023 23:02:06 &#43;0800</pubDate>
