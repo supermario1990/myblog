@@ -4,7 +4,162 @@
     <link>https://super_mario.gitee.io/categories/%E7%AE%97%E6%B3%95/</link>
     <description>算法 - 分类 - supermario1990</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>406517780@qq.com (supermario1990)</managingEditor>
-      <webMaster>406517780@qq.com (supermario1990)</webMaster><lastBuildDate>Thu, 12 Jan 2023 22:40:47 &#43;0800</lastBuildDate><atom:link href="https://super_mario.gitee.io/categories/%E7%AE%97%E6%B3%95/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>406517780@qq.com (supermario1990)</webMaster><lastBuildDate>Tue, 25 Apr 2023 22:51:00 &#43;0800</lastBuildDate><atom:link href="https://super_mario.gitee.io/categories/%E7%AE%97%E6%B3%95/" rel="self" type="application/rss+xml" /><item>
+  <title>go排序</title>
+  <link>https://super_mario.gitee.io/posts/2418.%E6%8C%89%E8%BA%AB%E9%AB%98%E6%8E%92%E5%BA%8F/</link>
+  <pubDate>Tue, 25 Apr 2023 22:51:00 &#43;0800</pubDate>
+  <author>作者</author>
+  <guid>https://super_mario.gitee.io/posts/2418.%E6%8C%89%E8%BA%AB%E9%AB%98%E6%8E%92%E5%BA%8F/</guid>
+  <description><![CDATA[<p>go中和排序相关的标准库是sort，今天讨论下自己犯下的傻逼错误。</p>
+<p>场景：</p>
+<p>有两个长度相等的数组，names数组中存储的是人的名字，heights数组中存储的是人的身高，请将名字数组按照身高从高到低的顺序进行排序</p>
+<p>我的写法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">sortPeople</span><span class="p">(</span><span class="nx">names</span> <span class="p">[]</span><span class="kt">string</span><span class="p">,</span> <span class="nx">heights</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">sort</span><span class="p">.</span><span class="nf">Slice</span><span class="p">(</span><span class="nx">names</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">heights</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">&gt;</span> <span class="nx">heights</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">names</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我想的是names和heights数组是一一对应的，所以就顺手写出了上面的代码。不知道有没有人和我犯一样的错？</p>
+<p>我们可以写一个程序来验证：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;sort&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">arr1</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">arr</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">sort</span><span class="p">.</span><span class="nf">Slice</span><span class="p">(</span><span class="nx">arr1</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;arr:&#34;</span><span class="p">,</span> <span class="nx">arr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;arr1:&#34;</span><span class="p">,</span> <span class="nx">arr1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">&gt;</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>输出：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">arr: <span class="o">[</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> 5<span class="o">]</span>
+</span></span><span class="line"><span class="cl">arr1: <span class="o">[</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> 5<span class="o">]</span>
+</span></span><span class="line"><span class="cl">arr: <span class="o">[</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> 5<span class="o">]</span>
+</span></span><span class="line"><span class="cl">arr1: <span class="o">[</span><span class="m">2</span> <span class="m">1</span> <span class="m">3</span> <span class="m">4</span> 5<span class="o">]</span>
+</span></span><span class="line"><span class="cl">arr: <span class="o">[</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> 5<span class="o">]</span>
+</span></span><span class="line"><span class="cl">arr1: <span class="o">[</span><span class="m">2</span> <span class="m">3</span> <span class="m">1</span> <span class="m">4</span> 5<span class="o">]</span>
+</span></span><span class="line"><span class="cl">arr: <span class="o">[</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> 5<span class="o">]</span>
+</span></span><span class="line"><span class="cl">arr1: <span class="o">[</span><span class="m">3</span> <span class="m">2</span> <span class="m">1</span> <span class="m">4</span> 5<span class="o">]</span>
+</span></span><span class="line"><span class="cl">arr: <span class="o">[</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> 5<span class="o">]</span>
+</span></span><span class="line"><span class="cl">arr1: <span class="o">[</span><span class="m">3</span> <span class="m">2</span> <span class="m">4</span> <span class="m">1</span> 5<span class="o">]</span>
+</span></span><span class="line"><span class="cl">arr: <span class="o">[</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> 5<span class="o">]</span>
+</span></span><span class="line"><span class="cl">arr1: <span class="o">[</span><span class="m">3</span> <span class="m">4</span> <span class="m">2</span> <span class="m">1</span> 5<span class="o">]</span>
+</span></span><span class="line"><span class="cl">arr: <span class="o">[</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> 5<span class="o">]</span>
+</span></span><span class="line"><span class="cl">arr1: <span class="o">[</span><span class="m">4</span> <span class="m">3</span> <span class="m">2</span> <span class="m">1</span> 5<span class="o">]</span>
+</span></span><span class="line"><span class="cl">arr: <span class="o">[</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> 5<span class="o">]</span>
+</span></span><span class="line"><span class="cl">arr1: <span class="o">[</span><span class="m">4</span> <span class="m">3</span> <span class="m">2</span> <span class="m">5</span> 1<span class="o">]</span>
+</span></span><span class="line"><span class="cl">arr: <span class="o">[</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> 5<span class="o">]</span>
+</span></span><span class="line"><span class="cl">arr1: <span class="o">[</span><span class="m">4</span> <span class="m">3</span> <span class="m">5</span> <span class="m">2</span> 1<span class="o">]</span>
+</span></span><span class="line"><span class="cl">arr: <span class="o">[</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> 5<span class="o">]</span>
+</span></span><span class="line"><span class="cl">arr1: <span class="o">[</span><span class="m">4</span> <span class="m">5</span> <span class="m">3</span> <span class="m">2</span> 1<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>从上面可以看出，虽然arr1和arr是一一对应的，但是arr在排序过程中一直是没有变动的，而arr1一直在变，这样两个两个数组就无法一一对应了。</p>
+<p>这里提供一种写法仅供参考：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">sortPeople</span><span class="p">(</span><span class="nx">names</span> <span class="p">[]</span><span class="kt">string</span><span class="p">,</span> <span class="nx">heights</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">n</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">names</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">arr</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([][</span><span class="mi">2</span><span class="p">]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">h</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">heights</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="nx">i</span><span class="p">,</span> <span class="nx">h</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">sort</span><span class="p">.</span><span class="nf">Slice</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">bool</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="p">&gt;</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">ans</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">arr</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">ans</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">ans</span><span class="p">,</span> <span class="nx">names</span><span class="p">[</span><span class="nx">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">ans</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>]]></description>
+</item>
+<item>
   <title>1807.替换字符串中的括号内容</title>
   <link>https://super_mario.gitee.io/posts/1807.%E6%9B%BF%E6%8D%A2%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E6%8B%AC%E5%8F%B7%E5%86%85%E5%AE%B9/</link>
   <pubDate>Thu, 12 Jan 2023 22:40:47 &#43;0800</pubDate>
